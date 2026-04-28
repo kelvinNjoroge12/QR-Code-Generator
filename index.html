@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create, preview, and download QR codes for approved links.">
+  <title>QR Code Generator | Strathmore Alumni</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script
+    defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero" aria-labelledby="app-title">
+      <div>
+        <p class="eyebrow">Strathmore Alumni Tools</p>
+        <h1 id="app-title">QR Code Generator</h1>
+        <p class="hero-copy">
+          Add approved destinations, generate crisp QR codes, and download them as PNG files.
+        </p>
+      </div>
+      <p class="status-chip" id="save-badge" aria-live="polite" hidden>Saved</p>
+    </section>
+
+    <section class="panel" aria-labelledby="links-heading">
+      <div class="toolbar">
+        <div>
+          <h2 id="links-heading">Saved links</h2>
+          <p class="toolbar-note" id="row-count">0 links</p>
+        </div>
+        <button class="btn btn-secondary" id="add-row-btn" type="button">Add link</button>
+      </div>
+
+      <div class="notice" id="message-banner" hidden></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-num" scope="col">#</th>
+              <th class="col-label" scope="col">Label</th>
+              <th class="col-url" scope="col">Destination</th>
+              <th class="col-qr" scope="col">Preview</th>
+              <th class="col-actions" scope="col">Actions</th>
+              <th class="col-delete" scope="col"><span class="sr-only">Delete</span></th>
+            </tr>
+          </thead>
+          <tbody id="qr-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="footer-copy">
+      Data is stored in this browser only. Use full `https://` links when possible; `mailto:`, `tel:`, and `sms:` are also supported.
+    </p>
+  </main>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <section
+      class="modal"
+      aria-labelledby="modal-label"
+      aria-describedby="modal-url"
+      aria-modal="true"
+      role="dialog"
+    >
+      <button class="modal-close" id="close-modal-btn" type="button" aria-label="Close QR preview">Close</button>
+      <h2 id="modal-label">QR Code</h2>
+      <p class="modal-url" id="modal-url"></p>
+      <div class="modal-qr-container" id="modal-qr-container"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="download-btn" type="button">Download PNG</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
